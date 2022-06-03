@@ -1,0 +1,82 @@
+1. Create a project, 2D
+
+2. Windows in Unity, 
+- Project view: files in the whole project.
+- Hierarchy: Stuff in current scene(level).
+- Sceneview: Visual representation in the current scene.
+- Inspector: Selected file/object settings.
+- Console: Shows errors / warnings.
+
+3. Saving vs. source control
+
+4. Create gameobject - An object (that may represent a "physical" object) within Unity
+- Empty
+- Circle
+- Square
+
+5. Components - Pre scripted behaviour that can be added to gameobjects
+- Transform.
+    Adjusting position(W), rotation(E), scale(R)
+- Rigidbody2D
+- Collider2D, circle and box
+We will use component based programming instead of object oriented. each script we make we be a component for a
+GameObject
+
+
+
+6. Create script 
+- class: Describes a thing/behaviour, same name as file (do not change manually).
+- subclass: or inherited class defines some innate behaviour, Monobehaviours is required to use
+    Unity specific behaviours and to be attached as a component.
+A Monobehaviour gives access to many functions:
+- Update (Method): Is part of Monobehaviour and gets run every frame, good to for moving objects or things that
+    require inputs during runtime.
+- Start (Method): Runs only at the start of the application, before the first update. Used to to initialize settings.
+
+7. Input and the IF statement
+Enter these lines inside squigglybracers {} of the Update method 
+    if (Input.GetKeyDown(KeyCode.Space))
+        {
+                Debug.Log("hit space");
+        }    
+
+8. Getting access to other components
+[SerializeField] private Rigidbody2D _rigidbody2d; -private means the variable 
+                                                  only can be accessed inside this class
+                                                  -Rigidbody2D means that the variable should be the
+                                                  class /or Data type) of Rigidbody2D
+                                                  -_rigidbody2d is the name of the variable.
+                                                  -[SerializeField] makes it possible to drag and drop
+                                                  an object (in this case of type Rigidbody2D) inside the
+                                                  Unity editor.
+                                                  
+8. _rigidbody2D.AddForce(Vector3.up * 100); - Each Component is its own class and can have methods to interact
+                                            with the class. This AddForce does what it says, adds force to
+                                            the rigidbody2D and will make it move. 
+                                            Vector3.up is a constant that holds the direction upwards with the
+                                            length of 1, multiplying with 100 make the "force" added 100times as high.                                              
+
+9. Adjusting the force added                float is an data type that can hold decimal numbers and commonly used
+                                            in programs. 
+[SerializeField] private float _force;      - this line will expose an the variable to be adjusted inside
+                                            Unity and make changes directly;
+                                            "_force" is now a variable that we can replace in the line we just
+                                            created. Instead of multiplying with with 100 we multiply with
+_rigidbody2D.AddForce(Vector3.up * _force); whatever value is entered in the editor. 
+
+9.5 Debugging with breakpoints ! Why dosnt the circle go up?                                         
+                                                                                    
+
+10. Two colliders2D hitting each other creats a collision with at leats one having a rigidbody2D.
+                                             any monobehaviour can access the method OnCollisionEnter2D
+
+                                             this method gets called every time the object starts colliding.  
+   private void OnCollisionEnter2D (Collider2D other)
+   {
+        SceneManager.LoadScene(0);
+   }                                          
+                                            By using Unitys SceneManager we can reload our current scene (number 0).
+                                            
+Other methods exists for detecting if it's a continious collision (OnCollisionStay2D) or if the 
+    collision ends (OnCollisionExit2D).
+    

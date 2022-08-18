@@ -17,12 +17,9 @@ public class Player : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(Input.GetAxis("Horizontal"));
-        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale = 1f;
-            Debug.Log("hit space");
             _rigidbody2D.AddForce(Vector2.up*_force);
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SpeedManager : MonoBehaviour
 {
-    public static float Speed { get; private set; }
+    public static float GameSpeed { get; private set; }
     [SerializeField] private float _baseSpeed = 1f;
     [SerializeField] float speedMod = 1;
 
@@ -18,7 +18,7 @@ public class SpeedManager : MonoBehaviour
         var updatedSpeedmod = Time.unscaledTime * scaledSpeedMod *scaledSpeedMod;
 
         
-        _baseSpeed *= (updatedSpeedmod + 1);
-        Speed = _baseSpeed;
+        _baseSpeed *= updatedSpeedmod + 1;
+        GameSpeed = _baseSpeed;
     }
 }

@@ -1,23 +1,22 @@
+using System.IO;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private int frameRate;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _obstacleSpeed = 1;
     [SerializeField] private float _minPos = -2f;
     [SerializeField] private float _maxPos= 2f;
     
 
     void Update()
     {
-        Application.targetFrameRate = frameRate;
         MoveLeft();
         TryResetPosition();
     }
 
         private void MoveLeft()
         {
-            transform.position += Vector3.left * SpeedManager.Speed * Time.unscaledDeltaTime;
+            transform.position += Vector3.left * SpeedManager.GameSpeed * _obstacleSpeed * Time.unscaledDeltaTime;
         }
 
         private void TryResetPosition()
@@ -30,6 +29,7 @@ public class Obstacle : MonoBehaviour
 
         private float GetRandomPosition()
         {
+            
             float randomNumber = Random.Range(_minPos, _maxPos);
             return randomNumber;
         }

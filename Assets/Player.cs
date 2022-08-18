@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 0;
         Lives = 3;
+        LivesChanged?.Invoke();
     }
 
     

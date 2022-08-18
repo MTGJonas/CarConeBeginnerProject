@@ -17,7 +17,6 @@ public class LivesDisplay : MonoBehaviour
     private void OnEnable()
     {
         _player.LivesChanged += UpdateLivesText;
-        UpdateLivesText();
     }
 
     private void OnDisable()

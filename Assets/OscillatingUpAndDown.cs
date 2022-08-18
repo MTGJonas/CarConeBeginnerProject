@@ -13,8 +13,6 @@ public class OscillatingUpAndDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
         var yPos = (Mathf.PerlinNoise(0,
                        Time.unscaledTime * _oscillationSpeed * SpeedManager.GameSpeed) - 0.5f) *
                    _oscillationFactor;
